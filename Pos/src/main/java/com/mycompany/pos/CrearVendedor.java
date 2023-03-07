@@ -14,15 +14,18 @@ public class CrearVendedor extends javax.swing.JFrame {
     }
 
     public void GuardarUsuario() {
-        int op = JOptionPane.showOptionDialog(null, "¿Estas seguro de crear este usuario?", "title", JOptionPane.YES_OPTION, JOptionPane.CANCEL_OPTION, null, null, EXIT_ON_CLOSE);
-        if (op == 0) {
-            Vendedor.cuentasVendedores.add(new Vendedor(Integer.parseInt(codigo.getText()), Integer.parseInt(caja.getText()), nombre.getText(), genero.getText(), pass.getText()));
-            dispose();
-            JOptionPane.showMessageDialog(null, "Vendedor creado exitosamente.");
-            new ModuloAdmin().setVisible(true);
+
+        if (codigo.getText().equals("") || caja.getText().equals("") || nombre.getText().equals("") || genero.getText().equals("") || pass.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos");
         } else {
+            int op = JOptionPane.showOptionDialog(null, "¿Estas seguro de crear este usuario?", "title", JOptionPane.YES_OPTION, JOptionPane.CANCEL_OPTION, null, null, EXIT_ON_CLOSE);
+            if (op == 0) {
+                Vendedor.cuentasVendedores.add(new Vendedor(Integer.parseInt(codigo.getText()), Integer.parseInt(caja.getText()), nombre.getText(), genero.getText(), pass.getText()));
+                JOptionPane.showMessageDialog(null, "Vendedor creado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha creado ningun vendedor.");
+            }
             dispose();
-            JOptionPane.showMessageDialog(null, "No se ha creado ningun vendedor.");
             new ModuloAdmin().setVisible(true);
         }
     }
@@ -44,7 +47,6 @@ public class CrearVendedor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         pass = new javax.swing.JPasswordField();
-        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +63,7 @@ public class CrearVendedor extends javax.swing.JFrame {
 
         jLabel6.setText("Contraseña:");
 
-        jButton1.setText("Crear Usuario");
+        jButton1.setText("Crear Vendedor");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -123,12 +125,10 @@ public class CrearVendedor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(16, 16, 16))
         );
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,11 +152,7 @@ public class CrearVendedor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (codigo.getText().equals("") || nombre.getText().equals("") || caja.getText().equals("") || genero.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos");
-        }else{
-            GuardarUsuario();
-        }
+        GuardarUsuario();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -215,7 +211,6 @@ public class CrearVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombre;
     private javax.swing.JPasswordField pass;

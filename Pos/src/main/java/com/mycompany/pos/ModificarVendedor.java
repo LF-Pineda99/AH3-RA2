@@ -18,6 +18,7 @@ public class ModificarVendedor extends javax.swing.JFrame {
     public ModificarVendedor() {
         setLocation(800, 300);
         initComponents();
+        ImportarDatos();
 
     }
 
@@ -28,20 +29,19 @@ public class ModificarVendedor extends javax.swing.JFrame {
     }
 
     public void ActualizarDatos() {
-
         Vendedor.cuentasVendedores.get(posicionTabla).setNombre(nombre.getText());
         Vendedor.cuentasVendedores.get(posicionTabla).setCaja(Integer.parseInt(caja.getText()));
         Vendedor.cuentasVendedores.get(posicionTabla).setGenero(genero.getText());
         Vendedor.cuentasVendedores.get(posicionTabla).setPass(pass.getText());
     }
 
-    public void ImportarDatos(int id) {
+    public void ImportarDatos() {
 
-        codigo.setText(Vendedor.cuentasVendedores.get(id).getCodigo() + "");
-        nombre.setText(Vendedor.cuentasVendedores.get(id).getNombre() + "");
-        caja.setText(Vendedor.cuentasVendedores.get(id).getCaja() + "");
-        genero.setText(Vendedor.cuentasVendedores.get(id).getGenero() + "");
-        pass.setText(Vendedor.cuentasVendedores.get(id).getPass() + "");
+        codigo.setText(Vendedor.cuentasVendedores.get(posicionTabla).getCodigo() + "");
+        nombre.setText(Vendedor.cuentasVendedores.get(posicionTabla).getNombre() + "");
+        caja.setText(Vendedor.cuentasVendedores.get(posicionTabla).getCaja() + "");
+        genero.setText(Vendedor.cuentasVendedores.get(posicionTabla).getGenero() + "");
+        pass.setText(Vendedor.cuentasVendedores.get(posicionTabla).getPass() + "");
     }
 
     @SuppressWarnings("unchecked")
@@ -168,15 +168,18 @@ public class ModificarVendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int op = JOptionPane.showOptionDialog(null, "¿Estas seguro de actualizar los datos?", "title", JOptionPane.YES_OPTION, JOptionPane.CANCEL_OPTION, null, null, EXIT_ON_CLOSE);
-        if (op == 0) {
-            ActualizarDatos();
-            dispose();
-            JOptionPane.showMessageDialog(null, "Datos actualizados exitosamente.");
-            new ModuloAdmin().setVisible(true);
-        }else{
-            dispose();
-            JOptionPane.showMessageDialog(null, "No se ha realizado ningun cambio en el vendedor.");
+        if (pass.getText().equals("") || nombre.getText().equals("") || caja.getText().equals("") || genero.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos");
+        } else {
+            int op = JOptionPane.showOptionDialog(null, "¿Estas seguro de actualizar los datos?", "title", JOptionPane.YES_OPTION, JOptionPane.CANCEL_OPTION, null, null, EXIT_ON_CLOSE);
+            if (op == 0) {
+                ActualizarDatos();
+                dispose();
+                JOptionPane.showMessageDialog(null, "Datos actualizados exitosamente.");
+            } else {
+                dispose();
+                JOptionPane.showMessageDialog(null, "No se ha realizado ningun cambio en el vendedor.");
+            }
             new ModuloAdmin().setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

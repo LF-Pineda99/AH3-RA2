@@ -2,16 +2,18 @@ package com.mycompany.pos;
 
 import java.util.LinkedList;
 
-public class Vendedor{
-    
-   static LinkedList<Vendedor> cuentasVendedores = new LinkedList<Vendedor>();
+public class Vendedor {
 
-    public static LinkedList<Vendedor> getCuentasVendedores() {
-        return cuentasVendedores;
-    }
+    private int codigo, caja, ventas;
+    private String nombre, genero, pass;
+    static LinkedList<Vendedor> cuentasVendedores = new LinkedList<Vendedor>();
 
-    public static void setCuentasVendedores(LinkedList<Vendedor> cuentasVendedores) {
-        Vendedor.cuentasVendedores = cuentasVendedores;
+    public Vendedor(int codigo, int caja, String nombre, String genero, String pass) {
+        this.codigo = codigo;
+        this.caja = caja;
+        this.nombre = nombre;
+        this.genero = genero;
+        this.pass = pass;
     }
 
     public int getCodigo() {
@@ -61,18 +63,4 @@ public class Vendedor{
     public void setPass(String pass) {
         this.pass = pass;
     }
-    private int codigo,caja,ventas;
-    private String nombre,genero, pass;
-
-    public Vendedor(int codigo, int caja,String nombre, String genero, String pass) {
-        this.codigo = codigo;
-        this.caja = caja;
-        this.nombre = nombre;
-        this.genero = genero;
-        this.pass = pass;
-    }
-
-    
-
-    
 }
